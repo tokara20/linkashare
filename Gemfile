@@ -38,6 +38,10 @@ gem 'devise', '~> 4.2'
 
 gem 'data-confirm-modal', '~> 1.3'
 
+gem 'cancancan', '~> 1.16'
+gem 'paperclip', '~> 5.1'
+gem 'friendly_id', '~> 5.2'
+
 group :development, :test do
   gem 'rspec-rails', '~> 3.5', '>= 3.5.2'
   gem 'factory_girl_rails', '~> 4.8'
