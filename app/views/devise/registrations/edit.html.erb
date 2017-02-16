@@ -8,12 +8,27 @@
       html: { method: :put, class: "form-horizontal" }) do |f| %>
   <%= devise_error_messages! %>
 
+  <% if @user.profile_image.present? %>
+    <%= image_tag @user.profile_image.url(:thumb), class: "profile-image-thumb" %>
+  <% else %>
+    <h3>No Profile image</h3>
+  <% end %>
+
   <div class="field form-group">
-    <%= f.label :username, class: "control-label col-sm-1", for: "user_email" %>
+    <%= f.label :username, class: "control-label col-sm-1", for: "user_username" %>
     <div class="col-sm-3">
       <%= f.text_field :username, autofocus: true, class: "form-control" %>
     </div>
   </div>
+  
+  <div class="field form-group">
+    <%= f.label :profile_image, class: "control-label col-sm-1", 
+        for: "user_profile_image" %>
+    <div class="col-sm-3">
+      <%= f.file_field :profile_image, autofocus: true, class: "form-control" %>
+    </div>
+  </div>
+
 
   <div class="field form-group">
     <%= f.label :email, class: "control-label col-sm-1", for: "user_email" %>
