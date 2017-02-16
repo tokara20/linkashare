@@ -1,4 +1,8 @@
 module ApplicationHelper
+  def new_link_text
+    raw('<span class="glyphicon glyphicon-link"></span> New Link')
+  end
+  
   def sign_up_text
     raw('<span class="glyphicon glyphicon-user"></span> Sign Up')
   end
