@@ -44,6 +44,7 @@ gem 'friendly_id', '~> 5.2'
 
 gem 'simple_form', '~> 3.4'
 gem 'avatarly', '~> 1.5'
+gem 'link_thumbnailer', '~> 3.3'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.5', '>= 3.5.2'
