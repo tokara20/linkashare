@@ -47,6 +47,7 @@ gem 'simple_form', '~> 3.4'
 group :development, :test do
   gem 'rspec-rails', '~> 3.5', '>= 3.5.2'
   gem 'factory_girl_rails', '~> 4.8'
+  gem 'awesome_print'
 end
 
 group :test do
