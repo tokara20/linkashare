@@ -22,28 +22,24 @@
           </li>
         </ul>
         
-       <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>
-          <li>
-            <%= link_to new_link_text, new_link_path %>
-          </li>
-          <li>
-            <%= link_to edit_profile_text, edit_user_registration_path %>
-          </li>
-          <li>
-            <%= link_to logout_text, destroy_user_session_path,
-                  method: :delete %>
-          </li>
+          <span class="navbar-right">
+            <%= link_to new_link_text, new_link_path,
+                  class: "btn btn-success navbar-btn" %>
+            <%= link_to edit_profile_text, edit_user_registration_path,
+                  class: "btn btn-primary navbar-btn navbtn-top" %>
+            <%= link_to logout_text, destroy_user_session_path, method: :delete,
+                  class: "btn btn-primary navbar-btn navbtn-top" %>
+          </span>
         <% else %>
-          <li>
-            <%= link_to sign_up_text, new_user_registration_path %>
-          </li>
-          <li>
-            <%= link_to login_text, new_user_session_path %>
-          </li>    
+          <span class="navbar-right">
+            <%= link_to login_text, new_user_session_path, 
+                        class: "btn btn-primary navbar-btn" %>
+            <%= link_to sign_up_text, new_user_registration_path,
+                        class: "btn btn-success navbar-btn navbtn-top" %>
+          </span>
         <% end %>
-      </ul>
-        
-    </div>
+      
+    </div> <!-- Navbar Elements -->
  </div> <!-- Container -->
 </nav> <!-- Navbar -->
