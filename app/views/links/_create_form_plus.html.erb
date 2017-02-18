@@ -1,0 +1,35 @@
+<%= form_for(@link, remote: true, html: { class: "form-horizontal" }) do |f| %>
+  <div class="form-group">
+    <%= f.label :url, class: "control-label col-sm-1", for: "link_url" %>
+    <div class="col-sm-6">
+      <%= f.text_field :url, class: "form-control", readonly: true %>
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <%= f.label :title, class: "control-label col-sm-1", for: "link_url" %>
+    <div class="col-sm-6">
+      <%= f.text_field :title, class: "form-control" %>
+    </div>
+  </div>
+    
+  <div class="form-group">
+    <%= f.label :description, class: "control-label col-sm-1", for: "link_url" %>
+    <div class="col-sm-6">
+      <%= f.text_field :description, class: "form-control" %>
+    </div>
+  </div>
+  
+  <div class="col-sm-6 col-sm-offset-1">
+      <%= image_tag(@link.website_image.url(:medium)) %>
+  </div>
+    
+  <div class="form-group">
+    <div class="col-sm-offset-1 col-sm-6">
+      <%= f.submit "Add Link", class: "btn btn-success btn-lg",
+            name: "add_link", data: { disable_with: "Adding Link..." } %>
+    </div>
+  </div>
+  
+<% end %>
+

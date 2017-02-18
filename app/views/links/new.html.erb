@@ -1,19 +1,22 @@
 <div class="container links-main">
   <h1 class="link-header">New Link</h1>    
     
-  <%= form_for(@link, html: { class: "form-horizontal" }) do |f| %>
-    <div class="form-group">
-      <%= f.label :url, class: "control-label col-sm-1", for: "link_url" %>
-      <div class="col-sm-6">
-        <%= f.text_field :url, class: "form-control" %>
+  <div id="create-link-form">
+    <%= form_for(@link, remote: true, html: { class: "form-horizontal" }) do |f| %>
+      <div class="form-group">
+        <%= f.label :url, class: "control-label col-sm-1", for: "link_url" %>
+        <div class="col-sm-6">
+          <%= f.text_field :url, class: "form-control" %>
+        </div>
       </div>
-    </div>
+      
+      <div class="form-group">
+        <div class="col-sm-offset-1 col-sm-6">
+          <%= f.submit "Fetch Url", class: "btn btn-primary",
+                name: "fetch_url", data: { disable_with: "Fetching Url..." } %>
+        </div>
+      </div>
+    <% end %>
     
-    <div class="form-group">
-      <div class="col-sm-offset-1 col-sm-6">
-        <%= f.submit "Create", class: "btn btn-success btn-lg btn-space",
-              data: { disable_with: "Creating..." } %>
-      </div>
-    </div>
-  <% end %>
+  </div>  
 </dov>
