@@ -1,0 +1,6 @@
+
+<% if @link.errors.any? %>
+  <% @link.errors.full_messages.each do |message| %>
+    <h3><span class="text-danger"><%= message %></span></h3>
+  <% end %>
+<% end %>
