@@ -1,22 +1,25 @@
 <% @page_title = "discover the web" %>
 
 <div class="container links-main">
-  <% @links.each do |link| %>
-    <h2><%= link_to link.title, link %></h2>
+  <div class="row">
+    <div class="col-sm-8">
+      <% @links.each do |link| %>
+        <div class="link-item">
+          <h2><%= link_to link.title, link %></h2>
+          
+          <p>
+            <%= link_to link do %>  
+              <%= image_tag(link.website_image.url(:thumb)) %>   
+            <% end %>
+          </p>
+          
+          <p class="lead">
+          <%= link.description %>
+          </p>
+        </div>
+        <hr>
+      <% end %>
+    </div> <!-- links -->
     
-    <p>
-    <%= image_tag(link.website_image.url(:thumb)) %>   
-    </p>
-    
-    <p>
-    Url: <%= link.url %>
-    </p>
-    
-    <p>
-    Description:<br>
-    <%= link.description %>
-    </p>
-    
-    <hr>
-  <% end %>
+  </div> <!-- row -->
 </div>

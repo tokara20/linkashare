@@ -1,14 +1,26 @@
-<h2><%= link.title %></h2>
-
-<p>
-<%= image_tag(link.website_image.url(:medium)) %>   
-</p>
-
-<p>
-Url: <%= link.url %>
-</p>
-
-<p>
-Description:<br>
-<%= link.description %>
-</p>
+<div class="row">
+  <div class="col-sm-8">
+    <h2><%= link.title %></h2>
+    
+    <p>
+    <%= image_tag(link.website_image.url(:medium)) %>   
+    </p>
+    
+    <p>
+    <%= link_to "Visit Site", link.url, class: "btn btn-success",
+          target: "_blank" %>
+    </p>
+    
+    <p class="lead">
+    <%= link.description %>
+    </p>
+    
+    <p>
+      <strong>Submitted by:</strong><br>
+      <%= link_to user_path(link.user) do %>
+        <%= image_tag(link.user.profile_image.url(:micro)) %><br>
+        <%= link.user.username %>
+      <% end %>
+    </p>
+  </div>
+</div>
