@@ -1,5 +1,22 @@
 <% @page_title = "discover the web" %>
 
 <div class="container links-main">
-    <h1>Links Index</h1>
+  <% @links.each do |link| %>
+    <h2><%= link_to link.title, link %></h2>
+    
+    <p>
+    <%= image_tag(link.website_image.url(:medium)) %>   
+    </p>
+    
+    <p>
+    Url: <%= link.url %>
+    </p>
+    
+    <p>
+    Description:<br>
+    <%= link.description %>
+    </p>
+    
+    <hr>
+  <% end %>
 </div>

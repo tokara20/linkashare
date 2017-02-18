@@ -17,6 +17,9 @@ class User < ApplicationRecord
       default_url: "/images/:style/missing.png"
   validates_attachment_content_type :profile_image, content_type: /\Aimage\/.*\z/
   
+  # Associations
+  has_many :links
+  
   protected
   
   def set_default_role

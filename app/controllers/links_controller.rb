@@ -2,7 +2,7 @@ class LinksController < ApplicationController
   before_action :authenticate_user!, only: [:new]  
     
   def index
-      
+    @links = Link.order(created_at: :desc)
   end
   
   def new
@@ -15,29 +15,44 @@ class LinksController < ApplicationController
         if params[:fetch_url]
           # add url checking
           link_data = LinkThumbnailer.generate(link_params[:url])
-         
-          # save thumbnail to image_path
-          image = open(link_data.images.first.src.to_s)
-          filename = image.base_uri.to_s.split('/')[-1]
-          image_path = Rails.root.join('public/temp', filename)   
-          IO.copy_stream(image, image_path) 
         
-          #byebug
           # fill in other fields
           @link = Link.new
           @link.url = link_params[:url]
           @link.title = link_data.title
           @link.description = link_data.description
+        elsif params[:add_link]
+          link_data = LinkThumbnailer.generate(link_params[:url])
+         
+          # save thumbnail to image_path
+          image = open(link_data.images.first.src.to_s)
+          filename = image.base_uri.to_s.split('/')[-1]
+          image_path = Rails.root.join('tmp', filename)   
+          IO.copy_stream(image, image_path) 
+        
+          # fill in other fields
+          @link = Link.new
+          @link.url = link_params[:url]
+          @link.title = link_params[:title]
+          @link.description = link_params[:description]
           File.open(image_path, 'rb') do |file|
             @link.website_image = file
           end
-          @link.save # for website_image to be stored
+          @link.user = current_user
           
-          #byebug
+          if @link.save
+            redirect_to @link
+          else
+            render 'new'
+          end
         end
         
-      end
-    end
+      end # format
+    end # respont_to
+  end
+  
+  def show
+    @link = Link.find(params[:id])
   end
   
   private
