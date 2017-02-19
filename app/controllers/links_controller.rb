@@ -1,5 +1,6 @@
 class LinksController < ApplicationController
-  before_action :authenticate_user!, only: [:new]  
+  before_action :authenticate_user!, except: [:index, :show]
+  authorize_resource
     
   def index
     @links = Link.order(created_at: :desc)
@@ -62,6 +63,10 @@ class LinksController < ApplicationController
   end
   
   def show
+    @link = Link.find(params[:id])
+  end
+  
+  def edit
     @link = Link.find(params[:id])
   end
   

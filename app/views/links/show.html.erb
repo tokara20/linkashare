@@ -1,3 +1,13 @@
 <div class="container links-main">
   <%= render partial: 'link', locals: { link: @link } %>
+  
+  <% if can? :update, @link %>
+    <%= link_to "Edit Link", edit_link_path(@link),
+        class: "btn btn-primary" %>
+  <% end %>
+  <% if can? :destroy, @link %>
+    <%= link_to "Delete Link", link_path(@link), method: :delete,
+        data: { confirm: "Are you sure you want to delete this link?" },
+        class: "btn btn-danger" %>
+  <% end %>
 </div>

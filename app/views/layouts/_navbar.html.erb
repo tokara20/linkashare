@@ -26,8 +26,10 @@
         
         <% if user_signed_in? %>
           <span class="navbar-right">
-            <%= link_to new_link_text, new_link_path,
+            <% if can? :create, Link %>
+              <%= link_to new_link_text, new_link_path,
                   class: "btn btn-success navbar-btn" %>
+            <% end %>
             <%= link_to edit_profile_text, edit_user_registration_path,
                   class: "btn btn-primary navbar-btn navbtn-top" %>
             <%= link_to logout_text, destroy_user_session_path, method: :delete,
