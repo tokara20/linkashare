@@ -1,5 +1,6 @@
 class LinksController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
+  before_action :find_link, only: [:show, :edit, :update, :destroy]
   authorize_resource
     
   def index
@@ -63,14 +64,30 @@ class LinksController < ApplicationController
   end
   
   def show
-    @link = Link.find(params[:id])
   end
   
   def edit
-    @link = Link.find(params[:id])
+  end
+  
+  def update
+    if @link.update_attributes(title: link_params[:title], 
+         description: link_params[:description])
+      redirect_to @link
+    else
+      render 'show'
+    end
+  end
+  
+  def destroy
+    @link.destroy
+    redirect_to root_path
   end
   
   private
+  
+  def find_link
+    @link = Link.find(params[:id])
+  end
   
   def link_params
     params.require(:link).permit(:url, :title, :description, :website_image)
