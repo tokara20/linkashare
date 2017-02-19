@@ -27,8 +27,16 @@
         <% if user_signed_in? %>
           <span class="navbar-right">
             <% if can? :create, Link %>
-              <%= link_to new_link_text, new_link_path,
-                  class: "btn btn-success navbar-btn" %>
+              <div class="btn-group">
+                <button type="button" class="btn btn-primary dropdown-toggle" 
+                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Links <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                  <li><%= link_to new_link_text, new_link_path %></li>
+                  <li><%= link_to my_links_text, my_links_path %></li>
+                </ul>
+              </div>
             <% end %>
             <%= link_to edit_profile_text, edit_user_registration_path,
                   class: "btn btn-primary navbar-btn navbtn-top" %>

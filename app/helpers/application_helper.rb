@@ -18,4 +18,8 @@ module ApplicationHelper
   def edit_profile_text  
     'Edit Profile'
   end
+  
+  def my_links_text
+    'My Links'
+  end
 end

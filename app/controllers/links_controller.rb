@@ -1,10 +1,17 @@
 class LinksController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :find_link, only: [:show, :edit, :update, :destroy]
+  
   authorize_resource
+  skip_authorize_resource only: [:my_links]
     
   def index
     @links = Link.order(created_at: :desc)
+  end
+  
+  def my_links
+    @links = Link.where(user: current_user)
+    render 'index'
   end
   
   def new

@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users
   
-  resources :links
+  resources :links do
+    get 'mylinks', to: "links#my_links", as: :my, on: :collection
+  end
   
   resources :user, only: [:show]
   
