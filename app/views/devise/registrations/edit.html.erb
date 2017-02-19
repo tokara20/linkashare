@@ -26,10 +26,17 @@
     </div>
     
     <div class="field form-group">
+      <%= f.label :information, class: "control-label col-sm-1", for: "user_username" %>
+      <div class="col-sm-3">
+        <%= f.text_area :information, size: "10x5", class: "form-control" %>
+      </div>
+    </div>
+    
+    <div class="field form-group">
       <%= f.label :profile_image, class: "control-label col-sm-1", 
           for: "user_profile_image" %>
       <div class="col-sm-3">
-        <%= f.file_field :profile_image, autofocus: true, class: "form-control" %>
+        <%= f.file_field :profile_image, class: "form-control" %>
       </div>
     </div>
   

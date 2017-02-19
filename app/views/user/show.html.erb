@@ -5,6 +5,9 @@
       <%= image_tag @user.profile_image.url(:medium),
             class: "profile-image-medium" %>
     </p>
+    <p class="lead">
+      <%= @user.information %>
+    </p>
   <% else %>
     <h2>User not found</h2>
   <% end %>
