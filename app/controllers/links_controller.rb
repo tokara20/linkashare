@@ -22,20 +22,28 @@ class LinksController < ApplicationController
     respond_to do |format|
       format.js do
         @link = Link.new
-        link_data = @link.get_link_data(link_params[:url])
+        @link.format_url_correctly(link_params[:url])
+        
+        link_data = @link.get_link_data(@link.url)
         unless link_data
-          render 'new' and return
+          render 'url_error' and return  # url_error.js.erb
         end
+        
         if params[:fetch_url]
-          @link.url = link_params[:url]
           @link.title = link_data.title
           @link.description = link_data.description
         elsif params[:add_link]
-          @link.url = link_params[:url]
           @link.fetch_website_image(link_data)
           @link.title = link_params[:title]
           @link.description = link_params[:description]
           @link.user = current_user
+          
+          # image spoofing detection workaround
+          # just set website_image to nil (empty)
+          if @link.errors[:website_image].first =~
+             /has contents that are not what they are reported to be/
+            @link.website_image = nil   
+          end
           
           if @link.save
             redirect_to @link

@@ -1,0 +1,9 @@
+
+<% if @link.errors.any? %>
+  <% @link.errors.messages.each do |k, messages| %>
+    <% messages.each do |message| %>
+      <h3 class="col-sm-offset-1"><span class="text-danger">
+        <%= message %></span></h3>
+    <% end %>
+  <% end %>
+<% end %>
