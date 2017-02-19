@@ -31,7 +31,6 @@ class LinksController < ApplicationController
         elsif params[:add_link]
           link_data = LinkThumbnailer.generate(link_params[:url])
          
-          byebug
           # save thumbnail to image_path
           unless link_data.images.empty?
             image = open(link_data.images.first.src.to_s)
@@ -70,7 +69,7 @@ class LinksController < ApplicationController
   end
   
   def update
-    if @link.update_attributes(title: link_params[:title], 
+    if @link.update(title: link_params[:title], 
          description: link_params[:description])
       redirect_to @link
     else
