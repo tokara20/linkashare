@@ -3,21 +3,29 @@
 <div class="container links-main">
   <div class="row">
     <div class="col-sm-8">
-      <% @links.each do |link| %>
-        <div class="link-item">
-          <h2><%= link_to link.title, link %></h2>
-          
-          <p>
-            <%= link_to link do %>  
-              <%= image_tag(link.website_image.url(:thumb)) %>   
-            <% end %>
-          </p>
-          
-          <p class="lead">
-          <%= link.description %>
-          </p>
-        </div>
-        <hr>
+      <% if @links.any? %>
+        <% @links.each do |link| %>
+          <div class="link-item">
+            <h2><%= link_to link.title, link %></h2>
+            
+            <p>
+              <%= link_to link do %>  
+                <%= image_tag(link.website_image.url(:thumb)) %>   
+              <% end %>
+            </p>
+            
+            <p class="lead">
+            <%= link.description %>
+            </p>
+          </div>
+          <hr>
+        <% end %>
+      <% else %>  
+        <h2>No links to be shown.</h2>
+        <% if can?(:create, Link) %>
+          Try adding one:
+          <%= link_to new_link_text, new_link_path, class: "btn btn-success" %>
+        <% end %>
       <% end %>
     </div> <!-- links -->
     

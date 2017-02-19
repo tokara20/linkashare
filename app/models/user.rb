@@ -15,7 +15,10 @@ class User < ApplicationRecord
   has_attached_file :profile_image, styles: { medium: "300x300>", 
       thumb: "100x100>", micro: "50x50>" }, 
       default_url: "/images/:style/missing.png"
+      
+  # Validations
   validates_attachment_content_type :profile_image, content_type: /\Aimage\/.*\z/
+  validates :username, length: { in: 3..15 }
   
   # Associations
   has_many :links

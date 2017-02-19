@@ -26,18 +26,18 @@
         
         <% if user_signed_in? %>
           <span class="navbar-right">
-            <% if can? :create, Link %>
-              <div class="btn-group">
-                <button type="button" class="btn btn-primary dropdown-toggle" 
-                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Links <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu">
+            <div class="btn-group">
+              <button type="button" class="btn btn-primary dropdown-toggle" 
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Links <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu">
+                <% if can?(:create, Link) %>
                   <li><%= link_to new_link_text, new_link_path %></li>
-                  <li><%= link_to my_links_text, my_links_path %></li>
-                </ul>
-              </div>
-            <% end %>
+                <% end %>
+                <li><%= link_to my_links_text, my_links_path %></li>
+              </ul>
+            </div>
             <%= link_to edit_profile_text, edit_user_registration_path,
                   class: "btn btn-primary navbar-btn navbtn-top" %>
             <%= link_to logout_text, destroy_user_session_path, method: :delete,

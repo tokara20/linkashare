@@ -31,9 +31,6 @@ class LinksController < ApplicationController
           @link.title = link_data.title
           @link.description = link_data.description
         elsif params[:add_link]
-          # save thumbnail to image_path
-           
-        
           @link.url = link_params[:url]
           @link.fetch_website_image(link_data)
           @link.title = link_params[:title]
