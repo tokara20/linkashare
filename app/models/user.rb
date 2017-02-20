@@ -23,6 +23,9 @@ class User < ApplicationRecord
   # Associations
   has_many :links
   
+  has_many :approvals
+  has_many :approved_links, through: :approvals 
+  
   protected
   
   def set_default_role

@@ -1,9 +1,10 @@
 class LinksController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :find_link, only: [:show, :edit, :update, :destroy]
+  before_action :find_link, only: [:show, :edit, :update, :destroy,
+    :approve_link, :unapprove_link]
   
   authorize_resource
-  skip_authorize_resource only: [:my_links]
+  skip_authorize_resource only: [:my_links, :approve_link, :unapprove_link]
     
   def index
     @links = Link.order(created_at: :desc)
@@ -58,6 +59,31 @@ class LinksController < ApplicationController
   
   def show
   end
+  
+  def approve_link
+    respond_to do |format|
+      format.js do
+        begin 
+          @link.approvers << current_user
+        ensure
+          render 'links/partials/approve_link'
+        end
+      end
+    end
+  end
+  
+  def unapprove_link
+    respond_to do |format|
+      format.js do
+        begin
+          @link.approvers.delete(current_user)
+        ensure
+          render 'links/partials/approve_link'
+        end
+      end
+    end
+  end
+  
   
   def edit
   end

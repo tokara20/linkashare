@@ -6,6 +6,11 @@
     <%= image_tag(link.website_image.url(:medium)) %>   
     </p>
     
+    <p id="link-approval">
+      <%= render partial: 'links/partials/approve_link', 
+                 locals: { link: link } %>
+    </p>
+    
     <p>
     <%= link_to "Visit Site", link.url, class: "btn btn-success",
           target: "_blank" %>

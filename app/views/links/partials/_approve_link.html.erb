@@ -1,0 +1,11 @@
+<% if user_signed_in? %>
+  <% if current_user.approved_links.include?(link) %>
+    <%= link_to approval_display_text, unapprove_link_path(link),
+        class: "btn btn-success", remote: true %>
+  <% else %>
+    <%= link_to approval_display_text, approve_link_path(link),
+        class: "btn btn-default", remote: true %>
+  <% end %>
+<% end %>
+<span class="badge">
+<%= pluralize(link.approvers.size, "Approver") %></span>

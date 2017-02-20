@@ -10,6 +10,9 @@ class Link < ApplicationRecord
   # Associations
   belongs_to :user
   
+  has_many :approvals
+  has_many :approvers, through: :approvals
+  
   def format_url_correctly(url)
     self.url = url
     unless self.url[/\Ahttp:\/\//] || self.url[/\Ahttps:\/\//]
