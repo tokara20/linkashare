@@ -11,19 +11,21 @@
         class: "btn btn-danger" %>
   <% end %>
   
-  <div id="link-comments">
-    <h3>Comments</h3>
-    <div id="comments-list">
-      <%= render partial: 'comments/comment', 
-          collection: @comments  %>
-    </div>
-    
-    <% if can?(:create, Comment) %>
-      <div id="comment-form">
-        <%= render partial: 'comments/comment_form',
-            locals: { link: @link } %>
+  <div class="row">
+    <div id="link-comments" class="col-sm-8">
+      <h3>Comments</h3>
+      <div id="comments-list">
+        <%= render partial: 'comments/partials/comment', 
+            collection: @comments  %>
       </div>
-    <% end %>
+      
+      <% if can?(:create, Comment) %>
+        <div id="comment-form">
+          <%= render partial: 'comments/partials/comment_form',
+              locals: { link: @link } %>
+        </div>
+      <% end %>
+    </div>
   </div>
   
 </div>

@@ -1,2 +1,5 @@
-$("#comments-list").append("<%= j(render partial: 'comment', locals: { comment: @comment }) %>");
+$("#comments-list")
+  .append("<%= j(render partial: 'comments/partials/comment', locals: { comment: @comment }) %>");
+  
+$("#comment-errors").remove();
 $("#comment_content").val('');

@@ -6,6 +6,7 @@ class CommentsController < ApplicationController
         @comment = @link.comments.create(content: comment_params[:content],
                    user: current_user)
         if @comment.errors.any?
+          render 'create_error'  # create_error.js.erb
         end
         
         # create.js.erb

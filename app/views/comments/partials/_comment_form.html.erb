@@ -1,0 +1,13 @@
+<%= form_for([link, link.comments.build], remote: true) do |f| %>
+  <% if @comment && @comment.errors.any? %>
+    <div id="comment-errors">
+      <% @comment.errors.full_messages.each do |message| %>
+        <h5 class="text-danger"><strong><%= message %></strong></h5>
+      <% end %>
+    </div>
+  <% end %>
+
+  <%= f.label :content, "Add Comment" %><br>
+  <%= f.text_area :content, size: "30x5" %><br>
+  <%= f.submit "Submit Comment", class: "btn btn-success btn-sm" %>
+<% end %>
