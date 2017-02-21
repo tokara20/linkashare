@@ -6,6 +6,7 @@ class Link < ApplicationRecord
   # Validations
   validates_attachment_content_type :website_image, content_type: /\Aimage\/.*\z/
   validates :url, uniqueness: true
+  validates_presence_of :url, :title, :description
   
   # Associations
   belongs_to :user

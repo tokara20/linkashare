@@ -30,10 +30,10 @@ class LinksController < ApplicationController
           render 'url_error' and return  # url_error.js.erb
         end
         
-        if params[:fetch_url]
+        if params[:fetch_url]  # first step: fetch url data
           @link.title = link_data.title
           @link.description = link_data.description
-        elsif params[:add_link]
+        elsif params[:add_link]  # second step: actual record creation
           @link.fetch_website_image(link_data)
           @link.title = link_params[:title]
           @link.description = link_params[:description]
@@ -49,7 +49,7 @@ class LinksController < ApplicationController
           if @link.save
             redirect_to @link
           else
-            render 'new'
+            render 'create' # create.js.erb
           end
         end
         

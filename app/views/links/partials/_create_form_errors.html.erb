@@ -1,0 +1,12 @@
+<div>
+  <% if link.errors.any? %>
+    <h4 class="text-danger"><%= pluralize(link.errors.size, "error") %>
+        prevented this link from being saved.
+    </h4>
+    <ul>
+      <% link.errors.full_messages.each do |message| %>
+        <li><span class="text-danger"><%= message %></span></li>
+      <% end %>
+    </ul>
+  <% end %>
+</div>
