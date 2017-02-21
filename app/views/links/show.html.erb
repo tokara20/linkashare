@@ -18,10 +18,12 @@
           collection: @comments  %>
     </div>
     
-    <div id="comment-form">
-      <%= render partial: 'comments/comment_form',
-          locals: { link: @link } %>
-    </div>
+    <% if can?(:create, Comment) %>
+      <div id="comment-form">
+        <%= render partial: 'comments/comment_form',
+            locals: { link: @link } %>
+      </div>
+    <% end %>
   </div>
   
 </div>

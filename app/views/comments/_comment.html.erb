@@ -8,5 +8,12 @@
   <div class="media-body">
     <h4 class="media-heading"><%= comment.user.username %></h4>
     <%= comment.content %>
+    <% if can?(:destroy, comment) %>
+      <div class="delete-comment-btn">
+        <%= link_to "Delete Comment", link_comment_path(comment.link, comment),
+            method: :delete, remote: true, class: "btn btn-danger btn-sm",
+            data: { confirm: "Delete this comment?" } %>
+      </div>    
+    <% end %>
   </div>
 </div>

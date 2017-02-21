@@ -8,7 +8,7 @@ Rails.application.routes.draw do
       get 'unapprove-link', tp: "links@unapprove_link", as: "unapprove"
     end
     
-    resources :comments, only: [:create]
+    resources :comments, only: [:create, :destroy]
   end
   
   resources :user, only: [:show]
