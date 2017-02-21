@@ -7,6 +7,8 @@ Rails.application.routes.draw do
       get 'approve-link', to: "links#approve_link", as: "approve"
       get 'unapprove-link', tp: "links@unapprove_link", as: "unapprove"
     end
+    
+    resources :comments, only: [:create]
   end
   
   resources :user, only: [:show]

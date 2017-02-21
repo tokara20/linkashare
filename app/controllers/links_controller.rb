@@ -59,7 +59,6 @@ class LinksController < ApplicationController
   
   def show
     @comments = @link.comments.includes(:user)
-    #@comments = @link.comments
   end
   
   def approve_link
