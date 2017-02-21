@@ -13,6 +13,8 @@ class Link < ApplicationRecord
   has_many :approvals
   has_many :approvers, through: :approvals
   
+  has_many :comments
+  
   def format_url_correctly(url)
     self.url = url
     unless self.url[/\Ahttp:\/\//] || self.url[/\Ahttps:\/\//]

@@ -1,0 +1,16 @@
+<% if comments && comments.any? %>
+  <% comments.each do |comment| %>
+    <div class="media">
+    <div class="media-left">
+      <%= link_to user_path(comment.user) do %>
+        <%= image_tag(comment.user.profile_image.url(:micro),
+            class: "media-object") %>
+      <% end %>
+    </div>
+    <div class="media-body">
+    <h4 class="media-heading"><%= comment.user.username %></h4>
+      <%= comment.content %>
+    </div>
+    </div>
+  <% end %>
+<% end %>

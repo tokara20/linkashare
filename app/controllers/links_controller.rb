@@ -58,6 +58,8 @@ class LinksController < ApplicationController
   end
   
   def show
+    @comments = @link.comments.includes(:user)
+    #@comments = @link.comments
   end
   
   def approve_link
@@ -66,7 +68,7 @@ class LinksController < ApplicationController
         begin 
           @link.approvers << current_user
         ensure
-          render 'links/partials/approve_link'
+          render 'approve_link'
         end
       end
     end
@@ -78,7 +80,7 @@ class LinksController < ApplicationController
         begin
           @link.approvers.delete(current_user)
         ensure
-          render 'links/partials/approve_link'
+          render 'approve_link'
         end
       end
     end

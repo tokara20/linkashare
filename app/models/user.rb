@@ -13,7 +13,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
          
   has_attached_file :profile_image, styles: { medium: "300x300>", 
-      thumb: "100x100>", micro: "50x50>" }, 
+      thumb: "100x100>", micro: "50x50#" }, 
       default_url: "/images/:style/missing.png"
       
   # Validations
@@ -24,7 +24,9 @@ class User < ApplicationRecord
   has_many :links
   
   has_many :approvals
-  has_many :approved_links, through: :approvals 
+  has_many :approved_links, through: :approvals
+  
+  has_many :comments
   
   protected
   
