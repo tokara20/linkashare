@@ -36,12 +36,17 @@ class Link < ApplicationRecord
   
   def fetch_website_image(link_data)
     unless link_data.images.empty?
-      image = open(link_data.images.first.src.to_s)
-      filename = image.base_uri.to_s.split('/')[-1]
-      image_path = Rails.root.join('tmp', filename)   
-      IO.copy_stream(image, image_path)
-      File.open(image_path, 'rb') do |file|
-        self.website_image = file
+      begin
+        image_url = link_data.images.first.src.to_s
+        image = open(image_url)
+        filename = image.base_uri.to_s.split('/')[-1]
+        image_path = Rails.root.join('tmp', filename)   
+        IO.copy_stream(image, image_path)
+        File.open(image_path, 'rb') do |file|
+          self.website_image = file
+        end
+      rescue OpenURI::HTTPError
+        logger.debug "Error fetching #{image_url}"
       end
     end
   end
