@@ -4,8 +4,8 @@ Rails.application.routes.draw do
   resources :links do
     get 'mylinks', to: "links#my_links", as: :my, on: :collection
     member do
-      get 'approve-link', to: "links#approve_link", as: "approve"
-      get 'unapprove-link', tp: "links@unapprove_link", as: "unapprove"
+      post 'approve-link', to: "links#approve_link", as: "approve"
+      delete 'unapprove-link', to: "links#unapprove_link", as: "unapprove"
     end
     
     resources :comments, only: [:create, :destroy]
