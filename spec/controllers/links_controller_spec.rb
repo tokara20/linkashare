@@ -77,6 +77,21 @@ RSpec.describe LinksController, type: :controller do
         expect(response).to redirect_to(new_user_session_path)
       end
     end
+    
+    describe "POST approve_link" do
+      it "returns an http status of 401" do
+        post :approve_link, params: { id: link.id }, xhr: true
+        expect(response).to have_http_status(401)  # Unauthorized
+      end
+    end
+    
+    describe "DELETE unapprove_link" do
+      it "returns an http status of 401" do
+        link.approvers << create(:user)
+        delete :unapprove_link, params: { id: link.id }, xhr: true
+        expect(response).to have_http_status(401)  # Unauthorized
+      end
+    end
   end
   
   context "For Logged-in Users" do
@@ -100,8 +115,8 @@ RSpec.describe LinksController, type: :controller do
         link1 = link
         link2 = create(:link, user: logged_in_user)
         link3 = create(:link, user: logged_in_user)
-        link4 = create(:link, user: another_user)
-        link5 = create(:link, user: another_user)
+        create(:link, user: another_user)
+        create(:link, user: another_user)
         
         get :my_links
         expect(assigns(:links)).to contain_exactly(link1, link2, link3)
@@ -174,6 +189,22 @@ RSpec.describe LinksController, type: :controller do
       end
     end
     
+    describe "POST approve_link" do
+      it "increases the approver count of the link by one" do
+        expect do
+          post :approve_link, params: { id: link.id }, xhr: true
+        end.to change(link.approvers, :count).by(1)
+      end
+    end
+    
+    describe "DELETE unapprove_link" do
+      it "decreases the approver count of the link by one" do
+        link.approvers << user
+        expect do
+          delete :unapprove_link, params: { id: link.id }, xhr: true
+        end.to change(link.approvers, :count).by(-1)
+      end
+    end
     
   end
 end
