@@ -15,4 +15,8 @@ RSpec.describe User, type: :model do
     it { should have_many(:approved_links) }
     it { should have_many(:comments) }
   end
+  
+  it 'should have a valid factory' do
+    expect(build(:user)).to be_valid  
+  end
 end

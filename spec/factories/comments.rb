@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :comment do
-    content "MyText"
-    user nil
-    link nil
+    content { Faker::Hipster.sentence }
+    user 
+    link 
   end
 end

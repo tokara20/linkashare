@@ -9,4 +9,8 @@ RSpec.describe Approval, type: :model do
     it { should belong_to(:approver) }
     it { should belong_to(:approved_link) }
   end
+  
+  it 'should have a valid factory' do
+    expect(build(:approval)).to be_valid  
+  end
 end

@@ -54,4 +54,6 @@ end
 group :test do
   gem 'capybara', '~> 2.12'
   gem 'shoulda-matchers', '~> 3.1', '>= 3.1.1'
+  gem 'rails-controller-testing', '~> 1.0', '>= 1.0.1'
+  gem 'faker', '~> 1.6', '>= 1.6.3'
 end

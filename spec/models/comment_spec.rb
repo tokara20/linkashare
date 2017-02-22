@@ -9,4 +9,8 @@ RSpec.describe Comment, type: :model do
     it { should belong_to(:user) }
     it { should belong_to(:link) }
   end
+  
+  it 'should have a valid factory' do
+    expect(build(:comment)).to be_valid  
+  end
 end

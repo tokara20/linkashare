@@ -14,4 +14,8 @@ RSpec.describe Link, type: :model do
     it { should have_many(:approvers) }
     it { should have_many(:comments) }
   end
+  
+  it 'should have a valid factory' do
+    expect(build(:link)).to be_valid  
+  end
 end
