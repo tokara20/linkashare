@@ -1,5 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe Approval, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+   context 'validations' do
+    it { should validate_uniqueness_of(:link_id).scoped_to(:user_id) }
+  end
+  
+  context 'associations' do
+    it { should belong_to(:approver) }
+    it { should belong_to(:approved_link) }
+  end
 end
