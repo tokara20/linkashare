@@ -56,4 +56,7 @@ group :test do
   gem 'shoulda-matchers', '~> 3.1', '>= 3.1.1'
   gem 'rails-controller-testing', '~> 1.0', '>= 1.0.1'
   gem 'faker', '~> 1.6', '>= 1.6.3'
+  gem 'poltergeist', '~> 1.13'
+  gem 'capybara-screenshot', '~> 1.0', '>= 1.0.14'
+  gem 'database_cleaner', '~> 1.5', '>= 1.5.3'
 end

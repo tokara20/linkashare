@@ -24,6 +24,11 @@ class PageForm
     self
   end
   
+  def click_btn(text)
+    click_button(text)
+    self
+  end
+  
   def login_user(user)
     self.visit_page.click('Login')
         .fill('Email': user.email, 'Password': user.password)

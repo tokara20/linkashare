@@ -9,4 +9,11 @@ FactoryGirl.define do
         'image/png')
     end
   end
+  
+  factory :another_user, class: User do
+    username 'Terry'
+    email 'terry@example.com'
+    password 'Somepassword'
+    password_confirmation 'Somepassword'
+  end
 end
