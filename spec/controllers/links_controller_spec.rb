@@ -17,7 +17,7 @@ RSpec.describe LinksController, type: :controller do
     end
   end
   
-  describe "GET show" do
+  describe "GET #show" do
     let (:link) { create(:link) }    
       
     it "renders :show template" do
@@ -34,28 +34,28 @@ RSpec.describe LinksController, type: :controller do
   context "For Guests" do
     let (:link) { create(:link) }    
       
-    describe "GET mylinks" do
+    describe "GET #mylinks" do
       it "redirects to the login page" do
         get :my_links
         expect(response).to redirect_to(new_user_session_path)
       end
     end
     
-    describe "GET new" do
+    describe "GET #new" do
       it "redirects to the login page" do
         get :new
         expect(response).to redirect_to(new_user_session_path)
       end
     end
     
-    describe "GET edit" do
+    describe "GET #edit" do
       it "redirects to the login page" do
         get :edit, params: { id: link }
         expect(response).to redirect_to(new_user_session_path)
       end
     end
     
-    describe "POST create" do
+    describe "POST #create" do
       it "returns an http status of 401" do
          post :create, params: { link: attributes_for(:link), 
                                  add_link: "Add Link" }, xhr: true
@@ -63,7 +63,7 @@ RSpec.describe LinksController, type: :controller do
       end
     end
     
-    describe "PUT update" do
+    describe "PUT #update" do
       it "redirects to the login page" do
         link.title = "Modified Title"
         put :update, params: { id: link.id, link: link.attributes }      
@@ -71,21 +71,21 @@ RSpec.describe LinksController, type: :controller do
       end
     end
     
-    describe "DELETE destroy" do
+    describe "DELETE #destroy" do
       it "redirects to the login page" do
         delete :destroy, params: { id: link.id }    
         expect(response).to redirect_to(new_user_session_path)
       end
     end
     
-    describe "POST approve_link" do
+    describe "POST #approve_link" do
       it "returns an http status of 401" do
         post :approve_link, params: { id: link.id }, xhr: true
         expect(response).to have_http_status(401)  # Unauthorized
       end
     end
     
-    describe "DELETE unapprove_link" do
+    describe "DELETE #unapprove_link" do
       it "returns an http status of 401" do
         link.approvers << create(:user)
         delete :unapprove_link, params: { id: link.id }, xhr: true
@@ -102,7 +102,7 @@ RSpec.describe LinksController, type: :controller do
       sign_in(user)
     end
     
-    describe "GET mylinks" do
+    describe "GET #mylinks" do
       it "renders :index template" do
         get :my_links
         expect(response).to render_template(:index)
@@ -123,27 +123,27 @@ RSpec.describe LinksController, type: :controller do
       end
     end
     
-    describe "GET new" do
+    describe "GET #new" do
       it "renders :new template" do
         get :new
         expect(response).to render_template(:new)
       end
     end
     
-    describe "GET edit" do
+    describe "GET #edit" do
       it "renders :edit template" do
         get :edit, params: { id: link }
         expect(response).to render_template(:edit)
       end
     end
     
-    describe "POST create" do
+    describe "POST #create" do
       before do
         allow_any_instance_of(Link).to receive(:get_link_data).and_return(true)
         allow_any_instance_of(Link).to receive(:fetch_website_image)    
       end
         
-      it "response to be ok" do
+      it "has a response of ok" do
          post :create, params: { link: attributes_for(:link), 
                                  add_link: "Add Link" }, xhr: true
          expect(response).to be_ok
@@ -159,7 +159,7 @@ RSpec.describe LinksController, type: :controller do
       end
     end
     
-    describe "PUT update" do
+    describe "PUT #update" do
       before do
         link.title = "Modified Title"
         put :update, params: { id: link.id, link: link.attributes }    
@@ -175,7 +175,7 @@ RSpec.describe LinksController, type: :controller do
       end
     end
     
-    describe "DELETE destroy" do
+    describe "DELETE #destroy" do
       before do
         delete :destroy, params: { id: link.id }    
       end
@@ -189,7 +189,7 @@ RSpec.describe LinksController, type: :controller do
       end
     end
     
-    describe "POST approve_link" do
+    describe "POST #approve_link" do
       it "increases the approver count of the link by one" do
         expect do
           post :approve_link, params: { id: link.id }, xhr: true
@@ -197,7 +197,7 @@ RSpec.describe LinksController, type: :controller do
       end
     end
     
-    describe "DELETE unapprove_link" do
+    describe "DELETE #unapprove_link" do
       it "decreases the approver count of the link by one" do
         link.approvers << user
         expect do
