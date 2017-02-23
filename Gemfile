@@ -49,7 +49,6 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.5', '>= 3.5.2'
   gem 'factory_girl_rails', '~> 4.8'
   gem 'awesome_print'
-  gem 'rspec-wait', '~> 0.0.9'
 end
 
 group :test do
