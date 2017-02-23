@@ -33,7 +33,4 @@ RSpec.feature "Site Visitor", type: :feature do
     end
   end
   
-  context "A site visitor should not be able to" do
-      
-  end
 end
