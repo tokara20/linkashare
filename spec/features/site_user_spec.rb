@@ -9,7 +9,7 @@ RSpec.feature "Site User", type: :feature do
   before do
     create(:link, title: 'Link Page Title')
     create(:link, title: 'Sample Title',
-                  description: 'Sample Description')
+                  description: 'Some Unique Phrase')
   end
     
   context "A site user should be able to" do
@@ -20,7 +20,7 @@ RSpec.feature "Site User", type: :feature do
       
       expect(page).to have_content('Linkashare')
       expect(page).to have_content('Link Page Title')
-      expect(page).to have_content('Sample Description')
+      expect(page).to have_content('Some Unique Phrase')
     end
     
     scenario "go to a link page" do
@@ -127,6 +127,21 @@ RSpec.feature "Site User", type: :feature do
       
       expect(page).not_to have_content(link.title)
       expect(current_path).to eq(root_path)
+    end
+    
+    scenario "Search for links" do
+      create(:link, title: 'Another Title')
+      create(:link, title: 'Some Site')
+      create(:link, title: 'Some Unique Phrase**')
+      
+      links_page_form.visit_page
+                .login_user(user)
+                .fill('q_title_or_description_cont': 'Some Unique Phrase')
+                .click('Search', 'form')
+                
+      expect(page).to have_content('Some Unique Phrase')
+      expect(page).not_to have_content('Another Title')
+      expect(page).not_to have_content('Some Site')
     end
   end
   

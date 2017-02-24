@@ -2,12 +2,17 @@ class LinksController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :find_link, only: [:show, :edit, :update, :destroy,
     :approve_link, :unapprove_link]
+  before_action :set_ransack_search_object
   
   authorize_resource
   skip_authorize_resource only: [:my_links, :approve_link, :unapprove_link]
     
   def index
-    @links = Link.order(created_at: :desc)
+    if params[:search_btn]
+      @links = @q.result(distinct: true).order(created_at: :desc)
+    else
+      @links = Link.order(created_at: :desc)
+    end
   end
   
   def my_links
@@ -104,6 +109,10 @@ class LinksController < ApplicationController
   end
   
   private
+  
+  def set_ransack_search_object
+    @q = Link.ransack(params[:q])
+  end
   
   def find_link
     @link = Link.find(params[:id])

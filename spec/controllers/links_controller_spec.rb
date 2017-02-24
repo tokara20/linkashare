@@ -15,6 +15,19 @@ RSpec.describe LinksController, type: :controller do
       get :index
       expect(assigns(:links)).to contain_exactly(link1, link2, link3)
     end
+    
+    it "lists only links that matches the search" do
+      create(:link)
+      match_link1 = create(:link, title: "Some Unique Phrase")  
+      match_link2 = create(:link, description: "**Some Unique Phrase**")   
+      create(:link)
+      create(:link)
+      
+      get :index, params: { search_btn: "Search",
+                    q: { title_or_description_cont: "Some Unique Phrase" } }
+      
+      expect(assigns(:links)).to contain_exactly(match_link1, match_link2)
+    end
   end
   
   describe "GET #show" do

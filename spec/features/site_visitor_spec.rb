@@ -31,6 +31,20 @@ RSpec.feature "Site Visitor", type: :feature do
                 
       expect(page).to have_css('h1', text: 'About')
     end
+    
+    scenario "Search for links" do
+      create(:link, title: 'Yet Another Site')
+      create(:link, description: 'Some Description')
+      create(:link, description: 'Site. To Be Matched**')
+      
+      links_page_form.visit_page
+                .fill('q_title_or_description_cont': 'To Be Matched')
+                .click('Search', 'form')
+                
+      expect(page).to have_content('To Be Matched')
+      expect(page).not_to have_content('Yet Another Title')
+      expect(page).not_to have_content('Some Description')
+    end
   end
   
 end
