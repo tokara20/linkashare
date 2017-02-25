@@ -10,7 +10,8 @@
             
             <p>
               <%= link_to link do %>  
-                <%= image_tag(link.website_image.url(:thumb)) %>   
+                <%= image_tag(link.website_image.url(:thumb),
+                              size: "100x100") %>   
               <% end %>
             </p>
             

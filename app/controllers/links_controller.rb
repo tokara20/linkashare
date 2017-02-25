@@ -45,10 +45,10 @@ class LinksController < ApplicationController
           @link.user = current_user
           
           # image spoofing detection workaround
-          # just set website_image to nil (empty)
+          # just set website_image_file_name to false
           if @link.errors[:website_image].first =~
              /has contents that are not what they are reported to be/
-            @link.website_image = nil   
+            @link.website_image_file_name = false
           end
           
           if @link.save

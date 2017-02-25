@@ -1,7 +1,15 @@
 class Link < ApplicationRecord
+  has_attached_file :website_image,
+    styles: { medium: "200x200#", thumb: "100x100#" },
+    storage: :cloudinary,
+    default_url: "/images/missing.png",
+    path: ":id/:style/:filename",
+    cloudinary_upload_options: {
+      default: { tags: "web_images" }
+    }
 
-  has_attached_file :website_image, styles: { medium: "200x200#", thumb: "100x100#" },
-        default_url: "/images/missing.png"
+  # has_attached_file :website_image, styles: { medium: "200x200#", thumb: "100x100#" },
+  #       default_url: "/images/missing.png"
       
   # Validations
   validates_attachment_content_type :website_image, content_type: /\Aimage\/.*\z/
@@ -41,6 +49,7 @@ class Link < ApplicationRecord
     unless link_data.images.empty?
       begin
         image_url = link_data.images.first.src.to_s
+        image_url = remove_query_string(image_url)
         image = open(image_url)
         filename = image.base_uri.to_s.split('/')[-1]
         image_path = Rails.root.join('tmp', filename)   
@@ -55,5 +64,9 @@ class Link < ApplicationRecord
   end
   
   private
+  
+  def remove_query_string(url)
+    url.split('?').first
+  end
 
 end
