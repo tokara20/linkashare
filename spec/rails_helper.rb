@@ -89,4 +89,10 @@ RSpec.configure do |config|
   config.after(:each) do
     DatabaseCleaner.clean
   end
+  
+  config.before(:each) do
+    # Stub out an operation where the different sizes
+    # of each profile_image is uploaded to the cloud.
+    allow_any_instance_of(User).to receive(:generate_profile_image)
+  end
 end

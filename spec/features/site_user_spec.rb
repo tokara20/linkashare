@@ -48,7 +48,9 @@ RSpec.feature "Site User", type: :feature do
       # It comes from phantomjsexport
       # Solution:
       # https://github.com/ariya/phantomjs/issues/12835
-      url = "https://www.yahoo.com/"
+      #url = "https://www.yahoo.com/"
+      url = "http://softwareengineering.stackexchange.com/questions/21118/" +
+        "what-is-the-general-tech-news-website-every-programmer-should-read"
       links_page_form.visit_page
                 .login_user(user)
                 .click('links-btn')

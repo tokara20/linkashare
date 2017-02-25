@@ -12,10 +12,15 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
          
-  has_attached_file :profile_image, styles: { medium: "300x300>", 
-      thumb: "100x100>", micro: "50x50#" }, 
-      default_url: "/images/:style/missing.png"
-      
+  has_attached_file :profile_image,
+    styles: { medium: "300x300#", micro: "50x50#" }, 
+    storage: :cloudinary,
+    default_url: "/images/missing.png",
+    path: ":id/:style/:filename",
+    cloudinary_upload_options: {
+      default: { tags: "profile_images" }
+    }       
+
   # Validations
   validates_attachment_content_type :profile_image, content_type: /\Aimage\/.*\z/
   validates :username, length: { in: 3..15 }

@@ -8,8 +8,6 @@ class Link < ApplicationRecord
       default: { tags: "web_images" }
     }
 
-  # has_attached_file :website_image, styles: { medium: "200x200#", thumb: "100x100#" },
-  #       default_url: "/images/missing.png"
       
   # Validations
   validates_attachment_content_type :website_image, content_type: /\Aimage\/.*\z/

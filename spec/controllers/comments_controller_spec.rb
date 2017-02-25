@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe CommentsController, type: :controller do
-  let!(:link) { create(:link) }
-  let!(:comment) { build(:comment) }
+  let(:comment) { build(:comment) }
+  let(:link) { create(:link) }
     
   describe "POST #create" do
     it "has a response of ok" do
@@ -16,7 +16,7 @@ RSpec.describe CommentsController, type: :controller do
           post :create, params: { comment: comment.attributes,
                                   link_id: link.id }, xhr: true
         end.to change(Comment, :count).by(1)
-      end
+    end
   end
   
   describe "DELETE #destroy" do
