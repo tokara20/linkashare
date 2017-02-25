@@ -18,9 +18,9 @@ class Link < ApplicationRecord
   belongs_to :user
   
   has_many :approvals
-  has_many :approvers, through: :approvals
+  has_many :approvers, through: :approvals, dependent: :destroy
   
-  has_many :comments
+  has_many :comments, dependent: :destroy
   
   def format_url_correctly(url)
     self.url = url

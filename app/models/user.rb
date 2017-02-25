@@ -13,7 +13,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
          
   has_attached_file :profile_image,
-    styles: { medium: "300x300#", micro: "50x50#" }, 
+    styles: { medium: "200x200#", micro: "50x50#" }, 
     storage: :cloudinary,
     default_url: "/images/missing.png",
     path: ":id/:style/:filename",
@@ -26,12 +26,12 @@ class User < ApplicationRecord
   validates :username, length: { in: 3..15 }
   
   # Associations
-  has_many :links
+  has_many :links, dependent: :destroy
   
   has_many :approvals
-  has_many :approved_links, through: :approvals
+  has_many :approved_links, through: :approvals, dependent: :destroy
   
-  has_many :comments
+  has_many :comments, dependent: :destroy
   
   protected
   

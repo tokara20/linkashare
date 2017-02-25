@@ -12,7 +12,8 @@
   
     <% if @user.profile_image.present? %>
       <%= link_to user_path(@user) do %>
-        <%= image_tag @user.profile_image.url(:thumb), class: "profile-image-thumb" %>
+        <%= image_tag @user.profile_image.url(:micro),
+              class: "profile-image-thumb" %>
       <% end %>
     <% else %>
       <h3>No Profile image</h3>
