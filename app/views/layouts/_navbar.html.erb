@@ -62,9 +62,9 @@
                   class: "form-control" %>
             </div>
             
-            <%= f.submit "Search", class: "btn btn-primary", 
+            <%= f.button search_text, class: "btn btn-primary", 
                 name: "search_btn", id: "search-btn",
-                data: { disable_with: "Searching..." } %>
+                data: { disable_with: searching_text } %>
           <% end %>
         <% end %>
       

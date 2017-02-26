@@ -30,4 +30,24 @@ module ApplicationHelper
   def approved_links_text
     'My Approved Links'
   end
+  
+  def fetching_url_text
+    raw('<i class="fa fa-spinner fa-pulse fa-1x fa-fw"></i>' +
+        ' <strong>Fetching Url...</strong>')
+  end
+  
+  def adding_link_text
+     raw('<i class="fa fa-spinner fa-pulse fa-1x fa-fw"></i>' +
+        ' <strong>Adding Link...</strong>')
+  end
+  
+  def search_text
+    raw('<span class="glyphicon glyphicon-search" aria-hidden="true"></span>' +
+        ' Search')
+  end
+  
+  def searching_text
+    raw('<span class="glyphicon glyphicon-search" aria-hidden="true"></span>' +
+        ' Searching...')
+  end
 end

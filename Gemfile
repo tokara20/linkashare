@@ -47,6 +47,7 @@ gem 'link_thumbnailer', '~> 3.3'
 gem 'paperclip-cloudinary', '~> 1.3'
 
 gem 'will_paginate', '~> 3.1', '>= 3.1.5'
+gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.1'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.5', '>= 3.5.2'
