@@ -152,21 +152,22 @@ RSpec.describe LinksController, type: :controller do
     
     describe "POST #create" do
       before do
-        allow_any_instance_of(Link).to receive(:get_link_data).and_return(true)
+        @link = build(:link)
+        result_double = double('link_data', url: @link.url)
+        allow_any_instance_of(Link).to receive(:get_link_data)
+                         .and_return(result_double)
         allow_any_instance_of(Link).to receive(:fetch_website_image)    
       end
         
       it "has a response of ok" do
-         post :create, params: { link: attributes_for(:link), 
+         post :create, params: { link: @link.attributes, 
                                  add_link: "Add Link" }, xhr: true
          expect(response).to be_ok
       end
       
       it "saves the new link in the database" do
-        just_a_link = build(:link)
-        
         expect do
-          post :create, params: { link: just_a_link.attributes, 
+          post :create, params: { link: @link.attributes, 
                                  add_link: "Add Link" }, xhr: true    
         end.to change(Link, :count).by(1)
       end

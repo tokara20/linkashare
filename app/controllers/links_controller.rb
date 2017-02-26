@@ -38,6 +38,7 @@ class LinksController < ApplicationController
         unless link_data
           render 'url_error' and return  # url_error.js.erb
         end
+        @link.url = link_data.url
         
         if params[:fetch_url]  # first step: fetch url data
           @link.title = link_data.title

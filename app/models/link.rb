@@ -36,6 +36,8 @@ class Link < ApplicationRecord
       self.errors.add(:url, "Unable to reach link.")
       return false
     end
+    
+    url
   end
   
   def fetch_website_image(link_data)
