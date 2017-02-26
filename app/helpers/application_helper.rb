@@ -26,4 +26,8 @@ module ApplicationHelper
   def approval_display_text
     raw '<span class="glyphicon glyphicon-ok"></span>'
   end
+  
+  def approved_links_text
+    'My Approved Links'
+  end
 end

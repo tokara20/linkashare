@@ -47,9 +47,16 @@ RSpec.describe LinksController, type: :controller do
   context "For Guests" do
     let (:link) { create(:link) }    
       
-    describe "GET #mylinks" do
+    describe "GET #my_links" do
       it "redirects to the login page" do
         get :my_links
+        expect(response).to redirect_to(new_user_session_path)
+      end
+    end
+    
+    describe "GET #my_approved_links" do
+      it "redirects to the login page" do
+        get :my_approved_links
         expect(response).to redirect_to(new_user_session_path)
       end
     end
@@ -115,7 +122,7 @@ RSpec.describe LinksController, type: :controller do
       sign_in(user)
     end
     
-    describe "GET #mylinks" do
+    describe "GET #my_links" do
       it "renders :index template" do
         get :my_links
         expect(response).to render_template(:index)
@@ -133,6 +140,29 @@ RSpec.describe LinksController, type: :controller do
         
         get :my_links
         expect(assigns(:links)).to contain_exactly(link1, link2, link3)
+      end
+    end
+    
+    describe "GET #my_approved_links" do
+      it "renders :index template" do
+        get :my_approved_links
+        expect(response).to render_template(:index)
+      end
+      
+      it "lists only links that approved by the user" do
+        logged_in_user = user
+        another_user = create(:user)
+        
+        link1 = link
+        link2 = create(:link, user: logged_in_user)
+        link2.approvers << logged_in_user
+        create(:link, user: logged_in_user)
+        create(:link, user: another_user)
+        link5 = create(:link, user: another_user)
+        link5.approvers << logged_in_user
+        
+        get :my_approved_links
+        expect(assigns(:links)).to contain_exactly(link2, link5)
       end
     end
     

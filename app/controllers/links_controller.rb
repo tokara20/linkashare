@@ -5,7 +5,8 @@ class LinksController < ApplicationController
   before_action :set_ransack_search_object
   
   authorize_resource
-  skip_authorize_resource only: [:my_links, :approve_link, :unapprove_link]
+  skip_authorize_resource only: [:my_links, :my_approved_links,
+                                 :approve_link, :unapprove_link]
   
   LinksPerPage = 10
     
@@ -21,6 +22,12 @@ class LinksController < ApplicationController
   
   def my_links
     @links = Link.where(user: current_user).order(created_at: :desc)
+                 .paginate(:page => params[:page], :per_page => LinksPerPage)
+    render 'index'
+  end
+  
+  def my_approved_links
+    @links = current_user.approved_links.order(created_at: :desc)
                  .paginate(:page => params[:page], :per_page => LinksPerPage)
     render 'index'
   end
