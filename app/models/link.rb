@@ -22,14 +22,9 @@ class Link < ApplicationRecord
   
   has_many :comments, dependent: :destroy
   
-  def format_url_correctly(url)
-    self.url = url
-    unless self.url[/\Ahttp:\/\//] || self.url[/\Ahttps:\/\//]
-      self.url = "http://#{self.url}"
-    end 
-  end
   
   def get_link_data(url)
+    url = format_url_correctly(url)
     if Link.where(url: url).any?
       self.errors.add(:url, "Link already exists.")
       return false  
@@ -62,6 +57,15 @@ class Link < ApplicationRecord
   end
   
   private
+  
+  def format_url_correctly(url)
+    self.url = url
+    unless self.url[/\Ahttp:\/\//] || self.url[/\Ahttps:\/\//]
+      self.url = "http://#{self.url}"
+    end
+    
+    self.url
+  end
   
   def remove_query_string(url)
     url.split('?').first

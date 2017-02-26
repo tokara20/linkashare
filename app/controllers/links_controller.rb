@@ -28,9 +28,8 @@ class LinksController < ApplicationController
     respond_to do |format|
       format.js do
         @link = Link.new
-        @link.format_url_correctly(link_params[:url])
         
-        link_data = @link.get_link_data(@link.url)
+        link_data = @link.get_link_data(link_params[:url])
         unless link_data
           render 'url_error' and return  # url_error.js.erb
         end
