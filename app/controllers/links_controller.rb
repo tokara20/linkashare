@@ -6,17 +6,22 @@ class LinksController < ApplicationController
   
   authorize_resource
   skip_authorize_resource only: [:my_links, :approve_link, :unapprove_link]
+  
+  LinksPerPage = 10
     
   def index
     if params[:search_btn]
       @links = @q.result(distinct: true).order(created_at: :desc)
+                 .paginate(:page => params[:page], :per_page => LinksPerPage)
     else
       @links = Link.order(created_at: :desc)
+                   .paginate(:page => params[:page], :per_page => LinksPerPage)
     end
   end
   
   def my_links
     @links = Link.where(user: current_user).order(created_at: :desc)
+                 .paginate(:page => params[:page], :per_page => LinksPerPage)
     render 'index'
   end
   

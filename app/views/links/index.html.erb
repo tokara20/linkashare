@@ -2,7 +2,7 @@
 
 <div class="container links-main">
   <div class="row">
-    <div class="col-sm-8">
+    <div class="col-sm-8 col-xs-12">
       <% if @links.any? %>
         <% @links.each do |link| %>
           <div class="link-item">
@@ -21,6 +21,10 @@
           </div>
           <hr>
         <% end %>
+        
+        <div class="linka_pagination">
+          <%= will_paginate @links %>
+        </div>
       <% else %>  
         <h2>No links to be shown.</h2>
         <% if can?(:create, Link) %>
