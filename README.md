@@ -5,7 +5,7 @@ A link sharing site written on Ruby on Rails.
 ## Features
 * Share links publicly with different users.
 * Automatically fetch submitted link's metadata.
-* Keep track of shared links.
+* Visit submitted links.
 * Approve links.
 * Comment on links.
 * Filter for submitted and approved links.
@@ -18,6 +18,8 @@ A link sharing site written on Ruby on Rails.
 
 ## To run
 rails db:migrate
+
 rails db:seed  # optional to seed initial data
+
 rails server
 
