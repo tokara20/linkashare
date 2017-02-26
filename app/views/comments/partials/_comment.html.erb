@@ -11,7 +11,7 @@
     <% if can?(:destroy, comment) %>
       <div class="delete-comment-btn">
         <%= link_to "Delete Comment", link_comment_path(comment.link, comment),
-            method: :delete, remote: true, class: "btn btn-danger btn-sm",
+            method: :delete, remote: true, class: "btn btn-danger btn-xs",
             data: { confirm: "Delete this comment?" } %>
       </div>    
     <% end %>
