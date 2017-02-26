@@ -2,7 +2,22 @@
 
 A link sharing site written on Ruby on Rails.
 
-Features:
+## Features
 * Share links publicly with different users.
-* Automatically fetch website metadata.
+* Automatically fetch submitted link's metadata.
 * Keep track of shared links.
+* Approve links.
+* Comment on links.
+* Filter for submitted and approved links.
+* Search for links.
+
+## Linkashare requires
+* imagemagick
+* libmagickwand-dev
+* phantomjs-prebuilt  # for RSpec testing
+
+## To run
+rails db:migrate
+rails db:seed  # optional to seed initial data
+rails server
+
