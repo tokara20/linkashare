@@ -19,15 +19,15 @@ A link sharing site written on Ruby on Rails.
 ## Required environment variables
 The following environment variables are required for the app to run:
 
-cloud_name=<Cloudinary cloud name>
+cloud_name=\<Cloudinary cloud name\>
 
-api_key=<Cloudinary api key>
+api_key=\<Cloudinary api key\>
 
-api_secret=<Cloudinary api secret>
+api_secret=\<Cloudinary api secret\>
 
-generic_password=<Password used when seeding users>
+generic_password=\<Password used when seeding users\>
 
-Put the environment variable=value pair in your .bashrc file then restart
+Put the environment variable=value pair in your .bashrc file, then restart
 your terminal.
 
 Example:
