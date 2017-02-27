@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     member do
       post 'approve-link', to: "links#approve_link", as: "approve"
       delete 'unapprove-link', to: "links#unapprove_link", as: "unapprove"
+      get 'show-approvers', to: "links#show_approvers", as: "show_approvers"
     end
     
     resources :comments, only: [:create, :destroy]

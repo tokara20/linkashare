@@ -33,11 +33,11 @@
   margin-bottom: 5px;
 }
 
-.visit-button {
-  display: inline-block;
-  position: relative;
-  top: -7px;
-}
+// .visit-button {
+//   display: inline-block;
+//   position: relative;
+//   top: 5px;
+// }
 
 .link-user {
   margin: 0 20px 0;
@@ -53,6 +53,14 @@
   top: -45px;
 }
 
+.button-approve {
+  margin-left: 5px;
+}
+
+.approver-user {
+  display: inline-block;
+  margin: 5px;
+}
 
 // Comments
 //----------------------------------------------------------

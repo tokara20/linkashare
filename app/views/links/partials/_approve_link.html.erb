@@ -7,5 +7,14 @@
                 method: :post, class: "btn btn-default", remote: true %>
   <% end %>
 <% end %>
-<span class="badge">
-<%= pluralize(link.approvers.size, "Approver") %></span>
+
+<%= link_to show_approvers_link_path(link), remote: true,
+      class: "button-approve", "data-toggle": "modal",
+      "data-target": "#approvers-modal" do %>
+  <span class="badge">
+    <%= pluralize(link.approvers.size, "Approver") %>
+  </span>
+<% end %>
+
+<div id="approvers-modal" class="modal fade" tabindex="-1" role="dialog">
+</div>

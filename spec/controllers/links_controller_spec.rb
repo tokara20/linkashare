@@ -112,6 +112,25 @@ RSpec.describe LinksController, type: :controller do
         expect(response).to have_http_status(401)  # Unauthorized
       end
     end
+    
+    describe "GET #show_approvers" do
+      it "has a response of ok" do
+         get :show_approvers, params: { id: link.id}, xhr: true
+         expect(response).to be_ok
+      end
+      
+      it "saves the new link in the database" do
+        user1 = create(:user)
+        user2 = create(:user)
+        user3 = create(:user)
+        link.approvers << user2
+        link.approvers << user3
+        
+        get :show_approvers, params: { id: link.id}, xhr: true
+        expect(assigns(:approvers)).to contain_exactly(user2, user3)
+      end
+    end
+    
   end
   
   context "For Logged-in Users" do
@@ -247,6 +266,24 @@ RSpec.describe LinksController, type: :controller do
         expect do
           delete :unapprove_link, params: { id: link.id }, xhr: true
         end.to change(link.approvers, :count).by(-1)
+      end
+    end
+    
+    describe "GET #show_approvers" do
+      it "has a response of ok" do
+         get :show_approvers, params: { id: link.id}, xhr: true
+         expect(response).to be_ok
+      end
+      
+      it "saves the new link in the database" do
+        user1 = create(:user)
+        user2 = create(:user)
+        user3 = create(:user)
+        link.approvers << user2
+        link.approvers << user3
+        
+        get :show_approvers, params: { id: link.id}, xhr: true
+        expect(assigns(:approvers)).to contain_exactly(user2, user3)
       end
     end
     

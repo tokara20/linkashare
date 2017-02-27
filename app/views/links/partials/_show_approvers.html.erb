@@ -1,0 +1,34 @@
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal"
+       aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <h4 class="modal-title">Approvers for this link</h4>
+    </div>
+    
+    <div class="modal-body">
+      <% if @approvers.any? %>
+        <% @approvers.each do |user| %>
+          <span class="approver-user">
+            <%= link_to user_path(user) do %>
+              <%= image_tag(user.profile_image.url(:micro)) %><br>
+              <%= user.username %>
+            <% end %>
+          </span>
+        <% end %>
+      <% else %>
+        <strong>No approvers yet. If you like this link then approve it :)
+          <% unless user_signed_in? %>
+            Log in or sign-up to enjoy Linkashare more.
+          <% end %>
+        </strong>
+      <% end %>
+    </div>
+    
+    <div class="modal-footer">
+      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      <!--<button type="button" class="btn btn-primary">Save changes</button>-->
+    </div>
+    
+  </div>
+</div>

@@ -1,12 +1,13 @@
 class LinksController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!, except: [:index, :show, :show_approvers]
   before_action :find_link, only: [:show, :edit, :update, :destroy,
-    :approve_link, :unapprove_link]
+    :approve_link, :unapprove_link, :show_approvers]
   before_action :set_ransack_search_object
   
   authorize_resource
   skip_authorize_resource only: [:my_links, :my_approved_links,
-                                 :approve_link, :unapprove_link]
+                                 :approve_link, :unapprove_link,
+                                 :show_approvers]
   
   LinksPerPage = 10
     
@@ -102,6 +103,15 @@ class LinksController < ApplicationController
     end
   end
   
+  def show_approvers
+    respond_to do |format|
+      format.js do
+        @approvers = @link.approvers
+        
+        # render show_approvers.js.erb
+      end
+    end
+  end
   
   def edit
   end
