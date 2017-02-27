@@ -7,7 +7,6 @@ end
 
 
 gem 'rails', '~> 5.0.1'
-gem 'sqlite3'
 gem 'puma', '~> 3.0'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
@@ -54,6 +53,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.5', '>= 3.5.2'
   gem 'factory_girl_rails', '~> 4.8'
   gem 'awesome_print'
+  gem 'sqlite3'
 end
 
 group :test do
@@ -64,4 +64,8 @@ group :test do
   gem 'capybara-screenshot', '~> 1.0', '>= 1.0.14'
   gem 'database_cleaner', '~> 1.5', '>= 1.5.3'
   gem 'faker', '~> 1.6', '>= 1.6.3'
+end
+
+group :production do
+  gem 'pg'
 end
