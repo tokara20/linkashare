@@ -15,8 +15,12 @@ module ApplicationHelper
     'Logout'
   end
   
-  def edit_profile_text  
-    'Edit Profile'
+  def view_profile_text
+    'View Profile'
+  end
+  
+  def edit_settings_text  
+    'Edit User Settings'
   end
   
   def my_links_text
@@ -42,13 +46,11 @@ module ApplicationHelper
   end
   
   def search_text
-    raw('<span class="glyphicon glyphicon-search" aria-hidden="true"></span>' +
-        ' Search')
+    raw('<span class="glyphicon glyphicon-search" aria-hidden="true"></span>')
   end
   
   def searching_text
-    raw('<span class="glyphicon glyphicon-search" aria-hidden="true"></span>' +
-        ' Searching...')
+    raw('<span class="glyphicon glyphicon-search" aria-hidden="true"></span>')
   end
   
   def search_visible?

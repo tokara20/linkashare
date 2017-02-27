@@ -41,8 +41,24 @@
                           my_approved_links_path %></li>
               </ul>
             </div>
-            <%= link_to edit_profile_text, edit_user_registration_path,
-                  class: "btn btn-primary navbar-btn navbtn-top" %>
+            
+            <div class="btn-group navbtn-top">
+              <button id="user-btn" type="button" 
+                class="btn btn-primary dropdown-toggle" 
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <%= current_user.username %> <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu">
+                <li>
+                  <%= link_to view_profile_text, user_path(current_user.slug) %>
+                </li>
+                <li>
+                  <%= link_to edit_settings_text, edit_user_registration_path %>
+                </li>
+              </ul>
+            </div>
+            
+            
             <%= link_to logout_text, destroy_user_session_path, method: :delete,
                   class: "btn btn-primary navbar-btn navbtn-top" %>
           </span>

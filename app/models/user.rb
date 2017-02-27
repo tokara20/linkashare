@@ -23,6 +23,7 @@ class User < ApplicationRecord
 
   # Validations
   validates_attachment_content_type :profile_image, content_type: /\Aimage\/.*\z/
+  validates :username, presence: true, uniqueness: true
   validates :username, length: { in: 3..15 }
   
   # Associations
@@ -32,6 +33,10 @@ class User < ApplicationRecord
   has_many :approved_links, through: :approvals, dependent: :destroy
   
   has_many :comments, dependent: :destroy
+  
+  def should_generate_new_friendly_id?
+    username_changed?  
+  end
   
   protected
   

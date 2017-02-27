@@ -39,7 +39,7 @@ RSpec.feature "Site Visitor", type: :feature do
       
       links_page_form.visit_page
                 .fill('q_title_or_description_cont': 'To Be Matched')
-                .click('Search', 'form')
+                .click('search-btn', 'form')
                 
       expect(page).to have_content('To Be Matched')
       expect(page).not_to have_content('Yet Another Title')

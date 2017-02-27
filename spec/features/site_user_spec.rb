@@ -80,11 +80,13 @@ RSpec.feature "Site User", type: :feature do
     scenario "change his/her username" do
       links_page_form.visit_page
                 .login_user(user)
-                .click('Edit Profile')
+                .click('user-btn')
+                .click('Edit User Settings')
                 .fill('Username': 'another-name',
                       'Current password': user.password)
                 .click('Update')
-                .click('Edit Profile')
+                .click('user-btn')
+                .click('Edit User Settings')
       
       expect(page).to have_selector("input[value='another-name']")
     end
@@ -93,7 +95,8 @@ RSpec.feature "Site User", type: :feature do
       changed_password = 'changed-password'
       links_page_form.visit_page
                 .login_user(user)
-                .click('Edit Profile')
+                .click('user-btn')
+                .click('Edit User Settings')
                 .fill('Password': changed_password,
                       'Password confirmation': changed_password,
                       'Current password': user.password)
@@ -102,7 +105,7 @@ RSpec.feature "Site User", type: :feature do
       user.password = changed_password
       links_page_form.login_user(user)
       
-      expect(page).to have_content('Edit Profile')
+      expect(page).to have_content(user.username)
       expect(page).to have_content('Logout')
     end
     
@@ -139,7 +142,7 @@ RSpec.feature "Site User", type: :feature do
       links_page_form.visit_page
                 .login_user(user)
                 .fill('q_title_or_description_cont': 'Some Unique Phrase')
-                .click('Search', 'form')
+                .click('search-btn', 'form')
                 
       expect(page).to have_content('Some Unique Phrase')
       expect(page).not_to have_content('Another Title')
