@@ -16,6 +16,25 @@ A link sharing site written on Ruby on Rails.
 * libmagickwand-dev
 * phantomjs-prebuilt  # for RSpec testing
 
+## Required environment variables
+The following environment variables are required for the app to run:
+
+cloud_name=<Cloudinary cloud name>
+
+api_key=<Cloudinary api key>
+
+api_secret=<Cloudinary api secret>
+
+generic_password=<Password used when seeding users>
+
+Put the environment variable=value pair in your .bashrc file then restart
+your terminal.
+
+Example:
+
+export cloud_name=mycloudname123
+
+
 ## To run
 rails db:migrate
 

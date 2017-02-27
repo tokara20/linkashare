@@ -15,12 +15,17 @@ Approval.delete_all
 generic_password = ENV.fetch('generic_password', 'some-password')
 usernames = ['gomiko', 'erick', 'terry', 'sandara', 'kasumi']
 
+def information_text(username)
+  "Hi my name is #{username} and I like exploring the internet." +
+  " I stumbled upon this site and would like to share my links."
+end
+
 users = []
 puts "Creating users..."
 usernames.each do |username|
   puts "#{username}"
   users << User.create(username: username, email: "#{username}@email.com",
-              password: generic_password)
+           password: generic_password, information: information_text(username))
 end
 
 #############################
