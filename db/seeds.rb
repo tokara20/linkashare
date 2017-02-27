@@ -4,9 +4,9 @@
 #############################
 puts "Deleting old records..."
 
-User.delete_all
-Link.delete_all
-Approval.delete_all
+User.destroy_all
+Link.destroy_all
+Approval.destroy_all
 
 #############################
 #   Create Users section    #
@@ -63,7 +63,7 @@ link_urls.each do |link_url|
   link = Link.new
   link_data = link.get_link_data(link_url)
   unless link_data
-    continue
+    next
   end
   link.fetch_website_image(link_data)
   link.title = link_data.title
