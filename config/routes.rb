@@ -16,7 +16,12 @@ Rails.application.routes.draw do
     resources :comments, only: [:create, :destroy]
   end
   
-  resources :user, only: [:show]
+  resources :user, only: [:show] do
+    member do
+      get 'submitted-links', to: "user#submitted_links", as: "submitted_links"
+      get 'approved-links', to: "user#approved_links", as: "approved_links"
+    end
+  end
   
   root to: "links#index"
   

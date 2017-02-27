@@ -55,8 +55,9 @@
           </span>
         <% end %>
         
-        <% if controller_name == "links" %>
-          <%= search_form_for(@q, class: "navbar-form navbar-right") do |f| %>
+        <% if search_visible %>
+          <%= search_form_for(@q, url: links_path, 
+                              class: "navbar-form navbar-right") do |f| %>
             <div class="form-group">
               <%= f.search_field :title_or_description_cont,
                   class: "form-control" %>

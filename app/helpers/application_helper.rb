@@ -50,4 +50,11 @@ module ApplicationHelper
     raw('<span class="glyphicon glyphicon-search" aria-hidden="true"></span>' +
         ' Searching...')
   end
+  
+  def search_visible
+    (controller_name == "links") ||
+    (  (controller_name == "user") && 
+       ((action_name == "submitted_links") || (action_name == "approved_links"))
+    )
+  end
 end
