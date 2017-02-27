@@ -53,6 +53,8 @@ class Link < ApplicationRecord
           self.website_image = file
         end
       rescue OpenURI::HTTPError
+        logger.debug "Error fetching #{image_url} OpenURI::HTTPError"
+      rescue
         logger.debug "Error fetching #{image_url}"
       end
     end

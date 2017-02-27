@@ -22,8 +22,9 @@
                          locals: { link: link } %>
             </span>
             
-            <span class="pull-right visit-button">
-            <%= link_to "Visit Site", link.url, class: "btn btn-default",
+            <span class="pull-right <%= 'visit-button' unless user_signed_in? %>">
+            <%= link_to "Visit Site", link.url, 
+                  class: "btn btn-default",
                   target: "_blank" %>
             </span>
           </div>
