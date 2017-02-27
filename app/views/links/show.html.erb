@@ -1,3 +1,7 @@
+<% content_for(:title) do %>
+  <%= (@link ? @link.title : "Link") %>
+<% end %>
+
 <div class="container links-main">
   <%= render partial: 'links/partials/link', locals: { link: @link } %>
   

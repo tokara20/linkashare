@@ -59,4 +59,26 @@ module ApplicationHelper
        ((action_name == "submitted_links") || (action_name == "approved_links"))
     )
   end
+  
+  def get_index_title
+    if controller_name == "links"
+      if action_name == "my_links"
+        return "My Links"  
+      elsif action_name == "my_approved_links"
+        return "My Approved Links"
+      else
+        return "discover the web"  
+      end
+    elsif controller_name == "user"
+      if action_name == "submitted_links"
+        return "#{@user.username}'s Links"
+      elsif action_name == "approved_links"
+        return "#{@user.username}'s Approved Links"
+      else
+        return "discover the web"   
+      end
+    else
+      return "discover the web"  
+    end
+  end
 end

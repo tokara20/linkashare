@@ -12,8 +12,8 @@ class UserController < ApplicationController
   
   def submitted_links
     begin
-      user = User.friendly.find(params[:id])
-      @links = Link.where(user: user).order(created_at: :desc)
+      @user = User.friendly.find(params[:id])
+      @links = Link.where(user: @user).order(created_at: :desc)
                  .paginate(:page => params[:page],
                            :per_page => LinksController::LinksPerPage)
       render 'links/index'
@@ -24,8 +24,8 @@ class UserController < ApplicationController
   
   def approved_links
     begin
-      user = User.friendly.find(params[:id])
-      @links = user.approved_links.order(created_at: :desc)
+      @user = User.friendly.find(params[:id])
+      @links = @user.approved_links.order(created_at: :desc)
                  .paginate(:page => params[:page],
                            :per_page => LinksController::LinksPerPage)
       render 'links/index'

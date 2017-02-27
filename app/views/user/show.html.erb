@@ -1,3 +1,7 @@
+<% content_for(:title) do %>
+  <%= (@user ? @user.username : "User not found") %>
+<% end %>
+
 <div class="container user-main">
   <div class="col-sm-8 col-xs-12">
     <% if @user %>
