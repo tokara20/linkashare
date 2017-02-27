@@ -1,4 +1,4 @@
-<nav class="navbar navbar-inverse navbar-fixed-top role="navigation">
+<nav class="navbar navbar-default navbar-fixed-top role="navigation">
      <div class="container">
       <div class="navbar-header">
         <button type="button" class="navbar-toggle" 
@@ -16,10 +16,10 @@
       
       <div class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
-          <li class="active">
+          <li class="<%= 'active' if current_page?(root_path) %>">
             <%= link_to "Links", root_path %>
           </li>
-          <li class="">
+          <li class="<%= 'active' if current_page?(about_path) %>">
             <%= link_to "About", about_path %>
           </li>
         </ul>
