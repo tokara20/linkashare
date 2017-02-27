@@ -51,7 +51,7 @@ module ApplicationHelper
         ' Searching...')
   end
   
-  def search_visible
+  def search_visible?
     (controller_name == "links") ||
     (  (controller_name == "user") && 
        ((action_name == "submitted_links") || (action_name == "approved_links"))

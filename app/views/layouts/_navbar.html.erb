@@ -55,7 +55,7 @@
           </span>
         <% end %>
         
-        <% if search_visible %>
+        <% if search_visible? %>
           <%= search_form_for(@q, url: links_path, 
                               class: "navbar-form navbar-right") do |f| %>
             <div class="form-group">

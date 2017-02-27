@@ -16,15 +16,17 @@
       
       <ul class="list-group">
         <li class="list-group-item link-options">
-          <span id="link-approval">
-            <%= render partial: 'links/partials/approve_link', 
-                       locals: { link: link } %>
-          </span>
-          
-          <span class="pull-right">
-          <%= link_to "Visit Site", link.url, class: "btn btn-default",
-                target: "_blank" %>
-          </span>
+          <div class="link-options-group">
+            <span id="link-approval">
+              <%= render partial: 'links/partials/approve_link', 
+                         locals: { link: link } %>
+            </span>
+            
+            <span class="pull-right visit-button">
+            <%= link_to "Visit Site", link.url, class: "btn btn-default",
+                  target: "_blank" %>
+            </span>
+          </div>
         </li>
         
         <li class="list-group-item link-description">
@@ -34,13 +36,17 @@
         </li>
           
         <li class="list-group-item link-user">
-          <p>
+          <span>
             <strong>Submitted by:</strong><br>
             <%= link_to user_path(link.user) do %>
               <%= image_tag(link.user.profile_image.url(:micro)) %><br>
               <%= link.user.username %>
             <% end %>
-          </p>
+          </span>
+          
+          <span class="pull-right">
+            <%= social_share_button_tag(link.title, url: link.url) %>
+          </span>
         </li>
           
       </ul>

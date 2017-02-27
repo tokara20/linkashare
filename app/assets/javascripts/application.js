@@ -15,4 +15,5 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require data-confirm-modal
+//= require social-share-button
 //= require_tree .
