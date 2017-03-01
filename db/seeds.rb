@@ -2,6 +2,7 @@
 #############################
 #   Delete Old Records      #
 #############################
+
 puts "Deleting old records..."
 
 User.destroy_all
