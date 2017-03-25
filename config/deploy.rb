@@ -19,11 +19,4 @@ namespace :deploy do
   end
 end
 
-# namespace :deploy do
-#   desc "reload the database with seed data"
-#   task :seed do
-#     on roles :all do  
-#       execute :chown, "cd #{current_path};RAILS_ENV=production bundle exec rails db:seed"
-#     end
-#   end
-# end
+
