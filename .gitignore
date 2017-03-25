@@ -25,3 +25,4 @@
 
 
 config/database.yml\nconfig/secrets.yml
+config/cloudinary.yml
