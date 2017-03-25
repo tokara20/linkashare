@@ -6,9 +6,22 @@ set :deploy_to, '/home/deploy/linkashare'
 append :linked_files, "config/database.yml", "config/secrets.yml"
 append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "vendor/bundle", "public/system", "public/uploads"
 
-namespace :deploy do
-  desc "reload the database with seed data"
-  task :seed do
-    execute "cd #{current_path}; bundle exec rake db:seed RAILS_ENV=production"
+desc 'Runs rake db:seed'
+task :seed => [:set_rails_env] do
+  on primary fetch(:migration_role) do
+    within release_path do
+      with rails_env: fetch(:rails_env) do
+        execute :rake, "db:seed"
+      end
+    end
   end
 end
+
+# namespace :deploy do
+#   desc "reload the database with seed data"
+#   task :seed do
+#     on roles :all do  
+#       execute :chown, "cd #{current_path};RAILS_ENV=production bundle exec rails db:seed"
+#     end
+#   end
+# end
